@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux'
-import { setCredentails } from '../features/auth/authSlice';
+import {login} from '../features/auth/authSlice'
 import { useLoginMutation } from '../features/auth/authApiSlice';
 
 const Login = () => {
@@ -10,15 +10,19 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('')
   const userRef = useRef()
-  const errRef = useRef()
   
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can add your authentication logic here (e.g., sending a request to a server).
     console.log('Email:', email);
     console.log('Password:', password);
+    dispatch(login({
+      email: email,
+      password: password,
+      loggedIn: false,
+    }))
   };
 
   return (

@@ -8,7 +8,7 @@ const Dashboard = () => {
         <div>
             <h1>This is the Dashboard Page</h1>
 
-            <button>log Out!</button>
+       
         </div>
     )
 }

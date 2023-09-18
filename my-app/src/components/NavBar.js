@@ -12,9 +12,12 @@ const NavBar = () => {
 
     return(
         <div>
-            <Link to ="/home">Home</Link>
-            {user ? <Link to ="/dashboard"> Dashboard</Link>: null}
-            {user ? <Logout/> : <Link to ="/login">Login</Link>}
+            <Link to ="">Home</Link>
+            {user ? <Link to ="dashboard"> Dashboard</Link>: null}
+           
+            {user ? <Link to ="logout">Logout</Link> : <Link to ="login">Login</Link>}
+
+            {!user ? <Link to ="createAccount">Create Account</Link>: null}
 
         </div>
     )

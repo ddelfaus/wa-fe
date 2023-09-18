@@ -3,8 +3,8 @@ import './App.css';
 import {BrowserRouter, Router, Route} from 'react-router-dom'
 
 import Home from './components/HomePage'
-import Login from './components/Login'
-import Logout from './components/Logout'
+import Login from './components/auth/Login'
+import Logout from './components/auth/Logout'
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/auth/authSlice';
 

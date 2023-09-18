@@ -1,18 +1,17 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-
+import {logout} from '../../features/auth/authSlice'
 
 const Logout = () => {
     const dispatch =useDispatch();
-    const handleLogOut = (e) => {
+    const handleLogout = (e) => {
         e.preventDefault();
-
-     
-        dispatch(Logout)
+       
+        dispatch(logout())
     }
     return (
         <div>
-            <button onClick={(e) => handleLogOut(e)}>Logut 1</button>
+            <button onClick={(e) => handleLogout(e)}>Logout 1</button>
         </div>
     )
 }

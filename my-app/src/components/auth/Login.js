@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux'
-import {login} from '../features/auth/authSlice'
-import { useLoginMutation } from '../features/auth/authApiSlice';
+import {login} from '../../features/auth/authSlice'
+import { useLoginMutation } from '../../features/auth/authApiSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -21,7 +21,7 @@ const Login = () => {
     dispatch(login({
       email: email,
       password: password,
-      loggedIn: false,
+      loggedIn: true,
     }))
   };
 

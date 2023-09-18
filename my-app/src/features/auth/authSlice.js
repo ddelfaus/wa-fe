@@ -1,14 +1,33 @@
-import {createSlice } from "@reduxjs/toolkit"
+import {createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import axios from "axios"
+
+
+// Define an async thunk for creating an account
+export const createAccount = createAsyncThunk(
+    "user/createAccount",
+    async (userData, { rejectWithValue }) => {
+        try {
+            // Make an API request to create the account
+            const response = await axios.post("", userData);
+             // Assuming the server responds with the created user data
+            return response.data;
+        } catch (error) {
+            // handle any api request errors
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
 
 export const authSlice = createSlice({
     name: "user",
     initialState: {
-        user:null
+        user:null,
+        status: "idle", // Possible values: "idle", "loading", "succeeded", "failed"
+        error: null, // Store API request errors here
     },
     reducers: {
         login: (state,action) => {
             state.user = action.payload;
-      
 
         },
         logout: (state) => {
@@ -16,6 +35,21 @@ export const authSlice = createSlice({
             console.log("I ran bro")
         },
     },
+    extraReducers: (builder) => {
+        builder
+        .addCase(createAccount.pending, (state) => {
+            state.status = "loading";
+        })
+        .addCase(createAccount.fulfilled, (state, action) => {
+            state.status = "succeeded";
+            state.user = action.payload;
+        })
+        .addCase(createAccount.rejected, (state, action) => {
+            state.status = "failed";
+            state.error = action.payload;
+        });
+
+    }
 })
 
 

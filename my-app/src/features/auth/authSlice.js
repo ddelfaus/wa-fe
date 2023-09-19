@@ -8,7 +8,7 @@ export const createAccount = createAsyncThunk(
     async (userData, { rejectWithValue }) => {
         try {
             // Make an API request to create the account
-            const response = await axios.post("", userData);
+            const response = await axios.post("http://localhost:9000/api/auth/register", userData);
              // Assuming the server responds with the created user data
             return response.data;
         } catch (error) {

@@ -30,7 +30,7 @@ const CreateAccount = () =>{
         e.preventDefault();
         try {
             // Dispatch the createAccount action with the form data
-            await dispatch(createAccount(formData));
+            await dispatch(createAccount(accountData));
             // The user data will be updated in the Redux store if the request succeeds
             // You can access it via the user selector (selectUser)
             console.log('Account created:', user);

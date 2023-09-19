@@ -49,7 +49,7 @@ const CreateAccount = () =>{
           <div>
               <label htmlFor="username">Username:</label>
               <input
-                type="username"
+                type="text"
                 id="username"
                 name="username"
                 value={accountData.username}
@@ -60,7 +60,7 @@ const CreateAccount = () =>{
             <div>
               <label htmlFor="email">Email:</label>
               <input
-                type="email"
+                type="text"
                 id="email"
                 name="email"
                 value={accountData.email}

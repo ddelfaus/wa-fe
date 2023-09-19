@@ -17,7 +17,20 @@ export const createAccount = createAsyncThunk(
         }
     }
 )
-
+export const loginRequest = createAsyncThunk(
+    "user/login",
+    async (loginData, { rejectWithValue }) => {
+      try {
+        // Make an API request to log in the user
+        const response = await axios.post("http://localhost:9000/api/auth/login", loginData);
+        // Assuming the server responds with the logged-in user data
+        return response.data;
+      } catch (error) {
+        // Handle any API request errors
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
 export const authSlice = createSlice({
     name: "user",
     initialState: {
@@ -45,6 +58,17 @@ export const authSlice = createSlice({
             state.user = action.payload;
         })
         .addCase(createAccount.rejected, (state, action) => {
+            state.status = "failed";
+            state.error = action.payload;
+        })
+        .addCase(loginRequest.pending, (state) => {
+            state.status = "loading";
+        })
+        .addCase(loginRequest.fulfilled, (state, action) => {
+            state.status = "succeeded";
+            state.user = action.payload;
+        })
+          .addCase(loginRequest.rejected, (state, action) => {
             state.status = "failed";
             state.error = action.payload;
         });

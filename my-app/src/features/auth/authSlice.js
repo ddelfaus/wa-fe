@@ -2,6 +2,7 @@ import {createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
 
+
 // Define an async thunk for creating an account
 export const createAccount = createAsyncThunk(
     "user/createAccount",
@@ -23,8 +24,10 @@ export const loginRequest = createAsyncThunk(
       try {
         // Make an API request to log in the user
         const response = await axios.post("http://localhost:9000/api/auth/login", loginData);
+        const { token, ...userData } = response.data; // Extract token and user data
+        localStorage.setItem("token", token); // Store the token in localStorage
         // Assuming the server responds with the logged-in user data
-        return response.data;
+        return { token, user: userData };
       } catch (error) {
         // Handle any API request errors
         return rejectWithValue(error.response.data);
@@ -35,6 +38,7 @@ export const authSlice = createSlice({
     name: "user",
     initialState: {
         user:null,
+        token: null,
         status: "idle", // Possible values: "idle", "loading", "succeeded", "failed"
         error: null, // Store API request errors here
     },

@@ -4,10 +4,10 @@ import {login} from '../../features/auth/authSlice'
 import { loginRequest } from '../../features/auth/authSlice';
 
 
+
+
 const Login = () => {
-  // const [email, setEmail] = useState('');
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     username: '',
@@ -22,16 +22,6 @@ const Login = () => {
   
 
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // You can add your authentication logic here (e.g., sending a request to a server).
-  //   console.log('Username:', username);
-  //   console.log('Password:', password);
-  //   dispatch(login({
-  //     username: username,
-  //     password: password,
-  //     loggedIn: true,
-  //   }))
 
   const handleSubmit = (e) => {
     e.preventDefault();

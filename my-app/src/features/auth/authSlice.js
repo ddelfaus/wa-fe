@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
-
+import {Navigate } from "react-router-dom";
 
 
 // Define an async thunk for creating an account
@@ -27,7 +27,10 @@ export const loginRequest = createAsyncThunk(
         const { token, ...userData } = response.data; // Extract token and user data
         localStorage.setItem("token", token); // Store the token in localStorage
         // Assuming the server responds with the logged-in user data
-        return { token, user: userData };
+        <Navigate to ="dashboard"/>
+        return { token, user: userData }
+           
+        
       } catch (error) {
         // Handle any API request errors
         return rejectWithValue(error.response.data);
@@ -49,7 +52,9 @@ export const authSlice = createSlice({
         },
         logout: (state) => {
             state.user = null;
-            console.log("I ran bro")
+            state.token = null;
+
+            localStorage.removeItem("token");
         },
     },
     extraReducers: (builder) => {

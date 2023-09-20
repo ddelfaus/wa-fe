@@ -5,6 +5,7 @@ import PrivateRoutes from './features/auth/PrivateRoutes'
 import Home from './components/HomePage'
 import Login from './components/auth/Login'
 import CreateAccount from './components/auth/CreateAccount';
+import CreateMoves from './components/CreateMoves'
 import Dashboard from './components/Dashboard';
 import NavBar from "./components/NavBar"
 import { useSelector } from 'react-redux';
@@ -30,7 +31,7 @@ function App() {
         </Route>
         <Route path ="/" element ={<PrivateRoutes/>}>
           <Route path="dashboard" element={<Dashboard/>}/>
-
+          <Route path="dashboard/createMoves" element={<CreateMoves/>}/>
         </Route>
    
       

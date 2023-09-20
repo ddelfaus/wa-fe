@@ -49,7 +49,7 @@ export const authSlice = createSlice({
      
         logout: (state) => {
             state.user = null;
-            
+            state.status = "idle"
 
             localStorage.removeItem("token");
         },

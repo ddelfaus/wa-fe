@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
-import {Navigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 
 // Define an async thunk for creating an account
@@ -23,11 +23,12 @@ export const loginRequest = createAsyncThunk(
     async (loginData, { rejectWithValue }) => {
       try {
         // Make an API request to log in the user
+      
         const response = await axios.post("http://localhost:9000/api/auth/login", loginData);
         const { token, ...userData } = response.data; // Extract token and user data
         localStorage.setItem("token", token); // Store the token in localStorage
         // Assuming the server responds with the logged-in user data
-        <Navigate to ="dashboard"/>
+   
         return { token, user: userData }
            
         
@@ -46,10 +47,7 @@ export const authSlice = createSlice({
         error: null, // Store API request errors here
     },
     reducers: {
-        login: (state,action) => {
-            state.user = action.payload;
-
-        },
+     
         logout: (state) => {
             state.user = null;
             state.token = null;
@@ -74,8 +72,11 @@ export const authSlice = createSlice({
             state.status = "loading";
         })
         .addCase(loginRequest.fulfilled, (state, action) => {
+       
             state.status = "succeeded";
             state.user = action.payload;
+          
+        
         })
           .addCase(loginRequest.rejected, (state, action) => {
             state.status = "failed";

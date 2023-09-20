@@ -1,12 +1,13 @@
 import React, { useState} from 'react'
 import { useDispatch, useSelector} from 'react-redux';
 import { createAccount, selectUser } from '../../features/auth/authSlice'
-
+import {useNavigate} from "react-router-dom"
 
 
 const CreateAccount = () =>{
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
+    const navigate = useNavigate()
 
     const [accountData, setAccountData] = useState({
         username: "",
@@ -28,18 +29,12 @@ const CreateAccount = () =>{
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            // Dispatch the createAccount action with the form data
-            await dispatch(createAccount(accountData));
-            // The user data will be updated in the Redux store if the request succeeds
-            // You can access it via the user selector (selectUser)
-            console.log('Account created:', user);
-          } catch (error) {
-            // Handle any errors here
-            console.error('Error creating account:', error);
-          }
+        dispatch(createAccount(accountData));
+        navigate("/login")
 
-        console.log("data test", accountData)
+          
+
+   
       };
     
       return (

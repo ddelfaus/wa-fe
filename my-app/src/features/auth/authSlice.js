@@ -42,7 +42,6 @@ export const authSlice = createSlice({
     name: "user",
     initialState: {
         user:null,
-        token: null,
         status: "idle", // Possible values: "idle", "loading", "succeeded", "failed"
         error: null, // Store API request errors here
     },
@@ -50,7 +49,7 @@ export const authSlice = createSlice({
      
         logout: (state) => {
             state.user = null;
-            state.token = null;
+            
 
             localStorage.removeItem("token");
         },
@@ -62,7 +61,7 @@ export const authSlice = createSlice({
         })
         .addCase(createAccount.fulfilled, (state, action) => {
             state.status = "succeeded";
-            state.user = action.payload;
+            
         })
         .addCase(createAccount.rejected, (state, action) => {
             state.status = "failed";
@@ -89,9 +88,7 @@ export const authSlice = createSlice({
 
 export const {login, logout} = authSlice.actions;
 
-
 export const selectUser = (state) => state.user.user
-
 
 export default authSlice.reducer
 

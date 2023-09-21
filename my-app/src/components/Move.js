@@ -4,7 +4,7 @@ import React from 'react'
 
 
 function Move({ move}) {
-
+    console.log(move)
     return (
     <div className="move-item">
         <h3>{move.title}</h3>

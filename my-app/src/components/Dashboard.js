@@ -9,7 +9,7 @@ const Dashboard = () => {
             <h1>This is the Dashboard Page</h1>
 
             <Link to = "createMoves">Create A Move</Link>
-
+            <Link to = "exerciseLibrary">View the Moves Libary</Link>
        
         </div>
     )

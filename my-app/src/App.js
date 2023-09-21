@@ -4,9 +4,12 @@ import {BrowserRouter as Router,Routes, Route, Outlet} from 'react-router-dom'
 import PrivateRoutes from './features/auth/PrivateRoutes'
 import Home from './components/HomePage'
 import Login from './components/auth/Login'
+import ExerciseLibrary from './components/ExerciseLibrary';
 import CreateAccount from './components/auth/CreateAccount';
 import CreateMoves from './components/CreateMoves'
+
 import Dashboard from './components/Dashboard';
+
 import NavBar from "./components/NavBar"
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/auth/authSlice';
@@ -32,6 +35,7 @@ function App() {
         <Route path ="/" element ={<PrivateRoutes/>}>
           <Route path="dashboard" element={<Dashboard/>}/>
           <Route path="dashboard/createMoves" element={<CreateMoves/>}/>
+          <Route path="dashboard/exerciseLibrary" element={<ExerciseLibrary/>}/>
         </Route>
    
       

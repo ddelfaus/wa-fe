@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// import axiosWithAuth from "../auth/axiosWithAuth"
+import axiosWithAuth from "../auth/axiosWithAuth"
 
 export const fetchMoves = createAsyncThunk(
   "moves/fetchMoves",
   async () => {
     try {
       // Make an API request to fetch moves
-      const response = await axios.get("http://localhost:9000/api/moves");
+      const response = await axiosWithAuth().get("http://localhost:9000/api/moves");
       console.log(response)
       return response.data;
     } catch (error) {

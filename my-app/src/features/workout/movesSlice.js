@@ -2,13 +2,29 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import axiosWithAuth from "../auth/axiosWithAuth"
 
+
+// get the whole move's library
 export const fetchMoves = createAsyncThunk(
   "moves/fetchMoves",
   async () => {
     try {
       // Make an API request to fetch moves
       const response = await axiosWithAuth().get("http://localhost:9000/api/moves");
-      console.log(response)
+     
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+// create an move 
+
+export const createMove = createAsyncThunk(
+  "moves/createMove",
+  async (moveData) => {
+    try {
+      const response = await axiosWithAuth().post("http://localhost:9000/api/moves", moveData);
       return response.data;
     } catch (error) {
       throw error;
@@ -26,6 +42,7 @@ const movesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
     builder
+        //get moves
         .addCase(fetchMoves.pending, (state) => {
         state.status = "loading";
         })
@@ -36,6 +53,12 @@ const movesSlice = createSlice({
         .addCase(fetchMoves.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+        })
+        //post a move
+        .addCase(createMove.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          // Add the newly created move to the state
+          state.moves.push(action.payload);
         });
     },
 });

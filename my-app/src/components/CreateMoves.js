@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createMove } from '../features/workout/movesSlice'
+import { useNavigate } from 'react-router-dom'
+
 
 function CreateMoves() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -24,6 +30,8 @@ function CreateMoves() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(createMove(formData))
+    navigate("/dashboard")
     // Submit the formData to your server or perform any desired actions
     console.log('Form submitted:', formData);
   };

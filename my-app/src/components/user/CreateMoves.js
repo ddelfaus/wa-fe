@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createMove } from '../../features/workout/movesSlice'
 import { useNavigate } from 'react-router-dom'
+import { selectUserId } from '../../features/auth/authSlice';
 
 
 function CreateMoves() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const userId = useSelector(selectUserId)
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -16,6 +18,7 @@ function CreateMoves() {
     equipment_required: '',
     video_url: '',
     reps_completed: 0,
+    user_id: userId
   });
 
   // Handle form input changes

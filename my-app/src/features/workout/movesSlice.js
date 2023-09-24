@@ -17,6 +17,21 @@ export const fetchMoves = createAsyncThunk(
     }
   }
 );
+// get User's move library
+export const fetchUserMoves = createAsyncThunk(
+  "moves/fetchUserMoves",
+  async (userId) => {
+    try {
+      // Make an API request to fetch moves for specified user
+      const response = await axiosWithAuth().get(`http://localhost:9000/api/moves/${userId}`);
+      console.log(response, "this is move data")
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 
 // create an move 
 
@@ -42,7 +57,7 @@ const movesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
     builder
-        //get moves
+        //get all moves
         .addCase(fetchMoves.pending, (state) => {
         state.status = "loading";
         })
@@ -53,6 +68,11 @@ const movesSlice = createSlice({
         .addCase(fetchMoves.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+        })
+        //get moves by userID
+        .addCase(fetchUserMoves.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          state.moves = action.payload;
         })
         //post a move
         .addCase(createMove.fulfilled, (state, action) => {

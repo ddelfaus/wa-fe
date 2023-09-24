@@ -90,5 +90,7 @@ export const {login, logout} = authSlice.actions;
 
 export const selectUser = (state) => state.user.user
 
+export const selectUserId = (state) => state.user.user.user.user_id;
+
 export default authSlice.reducer
 

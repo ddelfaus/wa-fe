@@ -11,6 +11,7 @@ import {useNavigate} from "react-router-dom"
 const Login = () => {
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.user)
+  console.log({user})
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',

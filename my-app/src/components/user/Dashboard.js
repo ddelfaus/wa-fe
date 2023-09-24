@@ -10,6 +10,8 @@ const Dashboard = () => {
 
             <Link to = "createMoves">Create A Move</Link>
             <Link to = "exerciseLibrary">View the Moves Libary</Link>
+            <Link to = "userExerciseLibrary">View the Moves Libary</Link>
+
        
         </div>
     )

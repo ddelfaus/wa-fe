@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { fetchMoves } from '../features/workout/movesSlice'
-import Move from './Move'
+import Move from './user/Move'
 
 
 

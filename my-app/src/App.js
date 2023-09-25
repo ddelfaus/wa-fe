@@ -6,9 +6,9 @@ import Home from './components/HomePage'
 import Login from './components/auth/Login'
 import ExerciseLibrary from './components/ExerciseLibrary';
 import CreateAccount from './components/auth/CreateAccount';
-
 import Dashboard from './components/user/Dashboard';
 import CreateMoves from './components/user/CreateMoves'
+import EditMove from './components/user/EditMove';
 import UserExerciseLibrary from './components/user/UserExerciseLibrary';
 import NavBar from "./components/NavBar"
 import { useSelector } from 'react-redux';
@@ -37,6 +37,7 @@ function App() {
           <Route path="dashboard/createMoves" element={<CreateMoves/>}/>
           <Route path="dashboard/exerciseLibrary" element={<ExerciseLibrary/>}/>
           <Route path="dashboard/userExerciseLibrary" element={<UserExerciseLibrary/>}/>
+          <Route path="edit-move/:moveId" element={<EditMove/>}/>
           
         </Route>
    

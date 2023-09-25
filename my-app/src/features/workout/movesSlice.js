@@ -31,6 +31,19 @@ export const fetchUserMoves = createAsyncThunk(
     }
   }
 );
+// get a specific move by move ID
+
+export const fetchMoveById = createAsyncThunk(
+  'moves/fetchMoveById',
+  async (moveId) => {
+    try {
+      const response = await axiosWithAuth().get(`http://localhost:9000/api/moves/move/${moveId}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 
 // create a move 
@@ -47,6 +60,22 @@ export const createMove = createAsyncThunk(
   }
 );
 
+
+export const editMove = createAsyncThunk(
+  "moves/editMove",
+  async ({ moveId, updatedMoveData }) => {
+    try {
+      // Make an API request to update the move by its ID
+      const response = await axiosWithAuth().put(
+        `http://localhost:9000/api/moves/${moveId}`,
+        updatedMoveData
+      );
+      return response.data; // Return the updated move data
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 // delete a move
 
@@ -69,6 +98,7 @@ const movesSlice = createSlice({
     name: "moves",
     initialState: {
     moves: [],
+    selectedMove: {},
     status: "idle",
     error: null,
     },
@@ -87,6 +117,19 @@ const movesSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
         })
+        //get a specific move
+        .addCase(fetchMoveById.pending, (state) => {
+          state.status = 'loading';
+        })
+        .addCase(fetchMoveById.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          state.selectedMove = action.payload; // Set the selected move
+        })
+        .addCase(fetchMoveById.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = action.error.message;
+        })
+
         //get moves by userID
         .addCase(fetchUserMoves.fulfilled, (state, action) => {
           state.status = "succeeded";
@@ -98,8 +141,17 @@ const movesSlice = createSlice({
           // Add the newly created move to the state
           state.moves.push(action.payload);
         })
+        // Edit a move
+        .addCase(editMove.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          // Find the edited move in the state and update its data
+          state.moves = state.moves.map((move) =>
+            move.id === action.payload.id ? action.payload : move
+          );
+        })
+
         // delete a move
-        
+
         .addCase(deleteMove.fulfilled, (state, action) => {
           state.status = "succeeded";
           // Remove the deleted move from the state by its ID
@@ -107,6 +159,9 @@ const movesSlice = createSlice({
         });
     },
 });
+
+export const selectSelectedMove = (state) => state.moves.selectedMove;
+
 
 export default movesSlice.reducer;
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { fetchMoves } from '../features/workout/movesSlice'
-import Move from './user/Move'
+import ExerciseLibraryMove from './ExerciseLibraryMove'
 
 
 
@@ -22,7 +22,7 @@ const ExerciseLibrary = () => {
         <div>
             <h1>The Exercise Library</h1>
             {moves.map((move) =>(
-                <Move move = {move}/>
+                <ExerciseLibraryMove move = {move}/>
             ))}
         </div>
     )

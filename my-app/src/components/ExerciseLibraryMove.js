@@ -3,7 +3,7 @@ import React from 'react'
 
 
 
-function Move({ move}) {
+function ExerciseLibraryMove({ move}) {
     console.log(move)
     return (
     <div className="move-item">
@@ -15,7 +15,7 @@ function Move({ move}) {
         <p>Equipment Required: {move.equipment_required}</p>
         <p>Video URL: {move.video_url}</p>
         <p>Reps Completed: {move.reps_completed}</p>
-        <button>Delete me!</button>
+   
     </div>
 
     )
@@ -24,4 +24,4 @@ function Move({ move}) {
 
 
 
-export default Move
+export default ExerciseLibraryMove

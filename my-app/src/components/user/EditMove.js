@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { fetchMoveById, selectSelectedMove } from '../../features/workout/movesSlice';
 import { selectUserId } from '../../features/auth/authSlice';
 
+import { editMove } from '../../features/workout/movesSlice';
 
 
 function EditMove
@@ -54,8 +55,10 @@ function EditMove
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createMove(formData))
-    navigate("/dashboard")
+    console.log("sent data", formData, moveId)
+  
+    dispatch(editMove( moveId, {updatedMoveData: formData }))
+    navigate("/dashboard/userExerciseLibrary")
     // Submit the formData to your server or perform any desired actions
     console.log('Form submitted:', formData);
   };

@@ -63,8 +63,9 @@ export const createMove = createAsyncThunk(
 
 export const editMove = createAsyncThunk(
   "moves/editMove",
-  async ({ moveId, updatedMoveData }) => {
+  async ( moveId, updatedMoveData ) => {
     try {
+      
       // Make an API request to update the move by its ID
       const response = await axiosWithAuth().put(
         `http://localhost:9000/api/moves/${moveId}`,
@@ -98,7 +99,7 @@ const movesSlice = createSlice({
     name: "moves",
     initialState: {
     moves: [],
-    selectedMove: {},
+    selectedMove: null,
     status: "idle",
     error: null,
     },

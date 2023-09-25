@@ -33,7 +33,7 @@ export const fetchUserMoves = createAsyncThunk(
 );
 
 
-// create an move 
+// create a move 
 
 export const createMove = createAsyncThunk(
   "moves/createMove",
@@ -46,6 +46,24 @@ export const createMove = createAsyncThunk(
     }
   }
 );
+
+
+// delete a move
+
+export const deleteMove = createAsyncThunk(
+  "moves/deleteMove",
+  async (moveId) => {
+    try {
+      // Make an API request to delete the move by its ID
+      await axiosWithAuth().delete(`http://localhost:9000/api/moves/${moveId}`);
+      return moveId; // Return the deleted move ID for reference
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+
 
 const movesSlice = createSlice({
     name: "moves",
@@ -79,6 +97,13 @@ const movesSlice = createSlice({
           state.status = "succeeded";
           // Add the newly created move to the state
           state.moves.push(action.payload);
+        })
+        // delete a move
+        
+        .addCase(deleteMove.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          // Remove the deleted move from the state by its ID
+          state.moves = state.moves.filter((move) => move.id !== action.payload);
         });
     },
 });

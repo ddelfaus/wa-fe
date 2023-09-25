@@ -1,10 +1,19 @@
 import React from 'react'  
+import { useDispatch } from 'react-redux';
 
+import { deleteMove } from '../../features/workout/movesSlice';
 
 
 
 function Move({ move}) {
-    console.log(move)
+    const dispatch = useDispatch();
+    
+  const handleDeleteClick = () => {
+    // Dispatch the deleteMove action with the move's ID
+    dispatch(deleteMove(move.id));
+  };
+
+
     return (
     <div className="move-item">
         <h3>{move.title}</h3>
@@ -15,7 +24,7 @@ function Move({ move}) {
         <p>Equipment Required: {move.equipment_required}</p>
         <p>Video URL: {move.video_url}</p>
         <p>Reps Completed: {move.reps_completed}</p>
-        <button>Delete me!</button>
+        <button onClick ={handleDeleteClick}>Delete me!</button>
     </div>
 
     )

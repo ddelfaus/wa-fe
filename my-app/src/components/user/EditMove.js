@@ -65,7 +65,7 @@ function EditMove() {
 
   return (
     <div>
-      <h2>Create a New Move</h2>
+      <h2>Edit Exercise</h2>
       <form onSubmit={handleSubmit}>
         {/* Add form input fields here */}
         <label>

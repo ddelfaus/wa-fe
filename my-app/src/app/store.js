@@ -2,6 +2,7 @@ import { configureStore,combineReducers } from "@reduxjs/toolkit"
 
 import authReducer from '../features/auth/authSlice'
 import movesReducer from '../features/workout/movesSlice'
+import workoutReducer from "../features/workout/workoutSlice"
 import storage from "redux-persist/lib/storage"
 import { persistReducer } from "redux-persist"
 
@@ -14,7 +15,8 @@ const persistConfig = {
 
 const reducer = combineReducers({
     user: authReducer,
-    moves: movesReducer
+    moves: movesReducer,
+    workouts: workoutReducer
 })
 
 

@@ -9,6 +9,9 @@ import CreateAccount from './components/auth/CreateAccount';
 import Dashboard from './components/user/Dashboard';
 import CreateMoves from './components/user/CreateMoves'
 import EditMove from './components/user/EditMove';
+//workouts
+import CreateWorkout from './components/user/CreateWorkout';
+
 import UserExerciseLibrary from './components/user/UserExerciseLibrary';
 import NavBar from "./components/NavBar"
 import { useSelector } from 'react-redux';
@@ -38,6 +41,9 @@ function App() {
           <Route path="dashboard/exerciseLibrary" element={<ExerciseLibrary/>}/>
           <Route path="dashboard/userExerciseLibrary" element={<UserExerciseLibrary/>}/>
           <Route path="edit-move/:moveId" element={<EditMove/>}/>
+          +
+          {/* workouts */}
+          <Route path="dashboard/createWorkout" element={<CreateWorkout/>}/>
           
         </Route>
    

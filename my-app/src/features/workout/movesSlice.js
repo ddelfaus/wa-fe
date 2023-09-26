@@ -63,14 +63,13 @@ export const createMove = createAsyncThunk(
 
 export const editMove = createAsyncThunk(
   "moves/editMove",
-  async ( moveId, updatedMoveData ) => {
+  async ( { moveId, updatedMoveData}) => {
     try {
       
+      console.log(updatedMoveData, "wth is going on????")
       // Make an API request to update the move by its ID
       const response = await axiosWithAuth().put(
-        `http://localhost:9000/api/moves/${moveId}`,
-        updatedMoveData
-      );
+        `http://localhost:9000/api/moves/${moveId}`, updatedMoveData);
       return response.data; // Return the updated move data
     } catch (error) {
       throw error;
@@ -142,14 +141,30 @@ const movesSlice = createSlice({
           // Add the newly created move to the state
           state.moves.push(action.payload);
         })
-        // Edit a move
-        .addCase(editMove.fulfilled, (state, action) => {
-          state.status = "succeeded";
-          // Find the edited move in the state and update its data
-          state.moves = state.moves.map((move) =>
-            move.id === action.payload.id ? action.payload : move
-          );
+
+        //edit move
+
+        .addCase(editMove.pending, (state) => {
+          state.status = 'loading';
         })
+        .addCase(editMove.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          // Find the index of the edited move in the state and update it
+          const editedMoveIndex = state.moves.findIndex(
+            (move) => move.id === action.payload.id
+          );
+          if (editedMoveIndex !== -1) {
+            state.moves[editedMoveIndex] = action.payload;
+          }
+        })
+        .addCase(editMove.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = action.error.message;
+        })
+
+
+     
+      
 
         // delete a move
 

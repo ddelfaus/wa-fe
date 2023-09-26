@@ -8,8 +8,7 @@ import { selectUserId } from '../../features/auth/authSlice';
 import { editMove } from '../../features/workout/movesSlice';
 
 
-function EditMove
-() {
+function EditMove() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const {moveId} = useParams();  // Get the moveId from the route parameter
@@ -18,7 +17,7 @@ function EditMove
 
   const [formData, setFormData] = useState({});
 
-  console.log(selectedMove, "test")
+
   useEffect(() => {
     // Fetch the move data using the moveId when the component mounts
     dispatch(fetchMoveById(moveId));
@@ -53,11 +52,12 @@ function EditMove
   };
 
   // Handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("sent data", formData, moveId)
-  
-    dispatch(editMove( moveId, {updatedMoveData: formData }))
+    
+    dispatch(editMove({ moveId, updatedMoveData: formData }))
     navigate("/dashboard/userExerciseLibrary")
     // Submit the formData to your server or perform any desired actions
     console.log('Form submitted:', formData);

@@ -12,6 +12,7 @@ const Dashboard = () => {
             <Link to = "exerciseLibrary">View the Exercise Libary</Link>
             <Link to = "userExerciseLibrary">View Your Exercise Libary</Link>
             <Link to = "createWorkout">Create your workout</Link>
+            <Link to = "userWorkoutLibrary">View Your Workout Libary</Link>
        
         </div>
     )

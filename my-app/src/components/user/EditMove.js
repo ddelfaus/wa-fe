@@ -147,7 +147,7 @@ function EditMove() {
         />
         </label>
         
-        <button type="submit">Create Move</button>
+        <button type="submit">Edit Move</button>
       </form>
     </div>
   );

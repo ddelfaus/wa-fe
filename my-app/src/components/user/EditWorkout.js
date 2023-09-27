@@ -92,7 +92,7 @@ function EditWorkout() {
         />
         </label>
         
-        <button type="submit">Create Workout</button>
+        <button type="submit">Edit Workout</button>
       </form>
     </div>
   );

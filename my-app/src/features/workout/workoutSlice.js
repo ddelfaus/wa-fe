@@ -63,13 +63,13 @@ export const createWorkout = createAsyncThunk(
 
 export const editWorkout = createAsyncThunk(
   "workouts/editWorkout",
-  async ( { WorkoutId, updatedWorkoutData}) => {
+  async ( { workoutId, updatedWorkoutData}) => {
     try {
       
       console.log(updatedWorkoutData, "wth is going on????")
       // Make an API request to update the workout by its ID
       const response = await axiosWithAuth().put(
-        `http://localhost:9000/api/workouts/${WorkoutId}`, updatedWorkoutData);
+        `http://localhost:9000/api/workouts/${workoutId}`, updatedWorkoutData);
       return response.data; // Return the updated workout data
     } catch (error) {
       throw error;

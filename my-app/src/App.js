@@ -7,13 +7,13 @@ import Login from './components/auth/Login'
 import ExerciseLibrary from './components/ExerciseLibrary';
 import CreateAccount from './components/auth/CreateAccount';
 import Dashboard from './components/user/Dashboard';
-import CreateMoves from './components/user/CreateMoves'
-import EditMove from './components/user/EditMove';
+import CreateMoves from './components/user/Exercise/CreateMoves'
+import EditMove from './components/user/Exercise/EditMove'
 //workouts
-import CreateWorkout from './components/user/CreateWorkout';
-import UserWorkoutsLibrary from './components/user/UserWorkoutsLibrary';
-import EditWorkout from './components/user/EditWorkout';
-import UserExerciseLibrary from './components/user/UserExerciseLibrary';
+import CreateWorkout from './components/user/Workout/CreateWorkout';
+import UserWorkoutsLibrary from './components/user/Workout/UserWorkoutsLibrary';
+import EditWorkout from './components/user/Workout/EditWorkout';
+import UserExerciseLibrary from './components/user/Exercise/UserExerciseLibrary';
 import NavBar from "./components/NavBar"
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/auth/authSlice';

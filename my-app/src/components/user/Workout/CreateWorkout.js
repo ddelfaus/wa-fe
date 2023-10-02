@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createWorkout } from '../../features/workout/workoutSlice';
+import { createWorkout } from '../../../features/workout/workoutSlice';
 import { useNavigate } from 'react-router-dom'
-import { selectUserId } from '../../features/auth/authSlice';
+import { selectUserId } from '../../../features/auth/authSlice';
 
 
 function CreateWorkout() {

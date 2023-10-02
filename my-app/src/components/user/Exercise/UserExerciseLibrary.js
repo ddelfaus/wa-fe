@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 // import { fetchMoves } from '../features/workout/movesSlice'
 import Move from './Move'
-import { selectUserId } from '../../features/auth/authSlice'
-import { fetchUserMoves } from '../../features/workout/movesSlice'
+import { selectUserId } from '../../../features/auth/authSlice'
+import { fetchUserMoves } from '../../../features/workout/movesSlice'
 
 
 const UserExerciseLibrary = () => {

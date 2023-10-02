@@ -1,46 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom'
-
-import { fetchMoveById, selectSelectedMove } from '../../features/workout/movesSlice';
-import { selectUserId } from '../../features/auth/authSlice';
-
-import { editMove } from '../../features/workout/movesSlice';
+import { createMove } from '../../../features/workout/movesSlice'
+import { useNavigate } from 'react-router-dom'
+import { selectUserId } from '../../../features/auth/authSlice';
 
 
-function EditMove() {
+function CreateMoves() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const {moveId} = useParams();  // Get the moveId from the route parameter
-  const selectedMove = useSelector(selectSelectedMove);
   const userId = useSelector(selectUserId)
-
-  const [formData, setFormData] = useState({});
-
-
-  useEffect(() => {
-    // Fetch the move data using the moveId when the component mounts
-    dispatch(fetchMoveById(moveId));
-  }, [dispatch, moveId]);
-
-
-  useEffect(() => {
-    if (selectedMove) {
-      setFormData({
-        title: selectedMove[0].title,
-        description: selectedMove[0].description,
-        difficulty_rating: selectedMove[0].difficulty_rating,
-        muscle_group: selectedMove[0].muscle_group,
-        weight_used: selectedMove[0].weight_used,
-        equipment_required: selectedMove[0].equipment_required,
-        video_url: selectedMove[0].video_url,
-        reps_completed: selectedMove[0].reps_completed,
-        user_id: userId,
-      });
-    } else {
-      // Handle the case where selectedMove is still loading or not available
-    }
-  }, [selectedMove, userId]);
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    difficulty_rating: 1,
+    muscle_group: '',
+    weight_used: '',
+    equipment_required: '',
+    video_url: '',
+    reps_completed: 0,
+    user_id: userId
+  });
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -52,20 +31,17 @@ function EditMove() {
   };
 
   // Handle form submission
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("sent data", formData, moveId)
-    
-    dispatch(editMove({ moveId, updatedMoveData: formData }))
-    navigate("/dashboard/userExerciseLibrary")
+    dispatch(createMove(formData))
+    navigate("/dashboard")
     // Submit the formData to your server or perform any desired actions
     console.log('Form submitted:', formData);
   };
 
   return (
     <div>
-      <h2>Edit Exercise</h2>
+      <h2>Create a New Move</h2>
       <form onSubmit={handleSubmit}>
         {/* Add form input fields here */}
         <label>
@@ -147,11 +123,10 @@ function EditMove() {
         />
         </label>
         
-        <button type="submit">Edit Move</button>
+        <button type="submit">Create Move</button>
       </form>
     </div>
   );
 }
 
-export default EditMove
-;
+export default CreateMoves;

@@ -1,7 +1,7 @@
 import React from 'react'  
 import { useDispatch } from 'react-redux';
 
-import { deleteMove } from '../../features/workout/movesSlice';
+import { deleteMove } from '../../../features/workout/movesSlice';
 import { useNavigate } from 'react-router-dom';
 
 

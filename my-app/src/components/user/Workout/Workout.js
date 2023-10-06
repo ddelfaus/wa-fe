@@ -5,6 +5,7 @@ import { deleteWorkout } from '../../../features/workout/workoutSlice';
 import { useNavigate } from 'react-router-dom';
 
 
+
 function Workout({ workout}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();

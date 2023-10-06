@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createWorkout } from '../../../features/workout/workoutSlice';
 import { useNavigate } from 'react-router-dom'
 import { selectUserId } from '../../../features/auth/authSlice';
+import UserWorkoutExerciseLibrary from './UserWorkoutExerciseLibrary';
 
 
 function CreateWorkout() {
@@ -81,6 +82,10 @@ function CreateWorkout() {
         
         <button type="submit">Create Workout</button>
       </form>
+      <div>
+        <UserWorkoutExerciseLibrary />
+      
+      </div>
     </div>
   );
 }
